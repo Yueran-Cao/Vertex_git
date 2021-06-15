@@ -15,7 +15,8 @@ clear vars
 % Are we using STDP?
 isSTDP = 1; % 1 is true, we are using STDP. 0 is false, no STDP.
 
-noiseScaler = 1; % Scaling parameter for the background noise in the model
+noiseScaler = 0.7450; % Scaling parameter for the background noise in the model
+% The threshold for seizure is 0.7452
 
 synapticScaler =  1; % Scaling parameter for initial synaptic weights
 
@@ -43,6 +44,7 @@ RecordingSettings.meaZpositions = meaZ;
 RecordingSettings.minDistToElectrodeTip = 20;
 RecordingSettings.maxRecTime = 500;
 RecordingSettings.sampleRate = 1000;
+RecordingSettings.recCLv_ext = 0;
 
 if isSTDP
     % Specifying which neurons to record the weights for 
@@ -63,8 +65,13 @@ else
     SimulationSettings.stdp = false;
 end
 
-SimulationSettings.simulationTime = 500;
+% SimulationSettings.simulationTime = 500;
+% SimulationSettings.timeStep = 0.03125;
+
+SimulationSettings.simulationTime1= 250;
 SimulationSettings.timeStep = 0.03125;
+SimulationSettings.simulationTime2= 250;
+
 %% Generate the network
 % We generate the network in exactly the same way as in tutorial 1, by
 % calling the |initNetwork| function:
